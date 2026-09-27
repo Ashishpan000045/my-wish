@@ -1,0 +1,2498 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8E%82%3C/text%3E%3C/svg%3E"
+    />
+    <title>Happy Birthday 🎂</title>
+    <style>
+      :root {
+        --pink: #ff6fa5;
+        --pink-dark: #e8478a;
+        --gold: #ffd166;
+        --blue: #5aa9e6;
+        --cream: #fff5f8;
+        --text: #5a2340;
+        --shadow: 0 12px 30px rgba(232, 71, 138, 0.22);
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 24px;
+      }
+      body {
+        margin: 0;
+        font-family:
+          "Segoe UI",
+          system-ui,
+          -apple-system,
+          sans-serif;
+        background: linear-gradient(160deg, #ffe1ec, #ffc9dd 40%, #ffd9b8);
+        color: var(--text);
+        overflow-x: hidden;
+        min-height: 100%;
+      }
+
+      /* ---------- scroll progress ---------- */
+      #progress {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 4px;
+        width: 0;
+        background: linear-gradient(
+          90deg,
+          var(--pink),
+          var(--gold),
+          var(--blue)
+        );
+        z-index: 30;
+        border-radius: 0 4px 4px 0;
+        box-shadow: 0 0 12px rgba(232, 71, 138, 0.6);
+      }
+
+      /* ---------- floating background ---------- */
+      .hearts {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 0;
+        overflow: hidden;
+      }
+      .heart {
+        position: absolute;
+        bottom: -12%;
+        font-size: 24px;
+        opacity: 0.65;
+        animation: float linear infinite;
+        will-change: transform;
+      }
+      @keyframes float {
+        0% {
+          transform: translateY(0) rotate(0);
+          opacity: 0;
+        }
+        10% {
+          opacity: 0.7;
+        }
+        to {
+          transform: translateY(-118vh) rotate(360deg);
+          opacity: 0;
+        }
+      }
+      .glow {
+        position: fixed;
+        border-radius: 50%;
+        filter: blur(60px);
+        pointer-events: none;
+        z-index: 0;
+        opacity: 0.45;
+      }
+      .glow.a {
+        width: 340px;
+        height: 340px;
+        background: #ff9ecb;
+        top: -60px;
+        left: -80px;
+        animation: drift 16s ease-in-out infinite alternate;
+      }
+      .glow.b {
+        width: 300px;
+        height: 300px;
+        background: #ffe1a8;
+        bottom: 10%;
+        right: -90px;
+        animation: drift 20s ease-in-out infinite alternate-reverse;
+      }
+      @keyframes drift {
+        to {
+          transform: translate(60px, 50px) scale(1.15);
+        }
+      }
+
+      .wrap {
+        position: relative;
+        z-index: 1;
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 34px 18px 90px;
+      }
+
+      /* ---------- section shell ---------- */
+      .section {
+        margin-top: 72px;
+      }
+      .section h2 {
+        text-align: center;
+        font-size: clamp(1.35rem, 4.4vw, 2.1rem);
+        color: var(--pink-dark);
+        margin: 0 0 6px;
+        font-weight: 800;
+      }
+      .section .sub {
+        text-align: center;
+        color: #8a4a68;
+        opacity: 0.85;
+        font-size: 0.95rem;
+        margin: 0 0 26px;
+        font-style: italic;
+      }
+      .divider {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        margin: 14px auto 0;
+        max-width: 220px;
+        color: var(--pink);
+      }
+      .divider::before,
+      .divider::after {
+        content: "";
+        height: 2px;
+        flex: 1;
+        border-radius: 2px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--pink),
+          transparent
+        );
+      }
+
+      /* ---------- reveal on scroll ---------- */
+      .reveal {
+        opacity: 0;
+        transform: translateY(38px) scale(0.98);
+        transition:
+          opacity 0.8s ease,
+          transform 0.8s cubic-bezier(0.2, 0.8, 0.25, 1);
+      }
+      .reveal.in {
+        opacity: 1;
+        transform: none;
+      }
+
+      /* ---------- HERO ---------- */
+      .hero {
+        text-align: center;
+        padding-top: 6px;
+      }
+      .kicker {
+        display: inline-block;
+        padding: 7px 18px;
+        border-radius: 30px;
+        background: rgba(255, 255, 255, 0.65);
+        border: 1.5px solid rgba(232, 71, 138, 0.35);
+        font-size: 0.82rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--pink-dark);
+        font-weight: 700;
+        animation: dropIn 0.8s ease-out both;
+      }
+      @keyframes dropIn {
+        from {
+          transform: translateY(-24px);
+          opacity: 0;
+        }
+        to {
+          transform: none;
+          opacity: 1;
+        }
+      }
+
+      .hero h1 {
+        font-size: clamp(2.1rem, 8vw, 4.2rem);
+        margin: 16px 0 6px;
+        line-height: 1.08;
+        font-weight: 900;
+        background: linear-gradient(
+          90deg,
+          var(--pink-dark),
+          var(--gold),
+          var(--blue),
+          var(--pink-dark)
+        );
+        background-size: 250% auto;
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        animation:
+          shine 6s linear infinite,
+          pop 0.9s 0.1s ease-out both;
+      }
+      @keyframes shine {
+        to {
+          background-position: 250% center;
+        }
+      }
+      @keyframes pop {
+        0% {
+          transform: scale(0.6);
+          opacity: 0;
+        }
+        70% {
+          transform: scale(1.08);
+        }
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+      .hero .name {
+        font-size: clamp(1.5rem, 5.5vw, 2.6rem);
+        color: var(--pink-dark);
+        font-weight: 800;
+        margin: 0 0 4px;
+        animation: pop 1s 0.3s both;
+      }
+      .hero .tagline {
+        color: #8a4a68;
+        font-style: italic;
+        max-width: 34ch;
+        margin: 0 auto;
+        animation: pop 1s 0.45s both;
+      }
+
+      /* ---------- THE STAGE (boy + girl scene) ---------- */
+      .stage-shell {
+        margin: 22px auto 6px;
+        max-width: 620px;
+        width: 100%;
+        position: relative;
+        animation: pop 1.1s 0.35s both;
+      }
+      .stage-shell::before {
+        content: "";
+        position: absolute;
+        inset: -6% -4%;
+        background: radial-gradient(
+          ellipse at 50% 45%,
+          rgba(255, 255, 255, 0.85),
+          rgba(255, 255, 255, 0) 70%
+        );
+        border-radius: 50%;
+        z-index: -1;
+      }
+      svg.stage {
+        width: 100%;
+        height: auto;
+        display: block;
+        overflow: visible;
+      }
+
+      .balloon {
+        transform-box: fill-box;
+        transform-origin: 50% 100%;
+        animation: sway 4s ease-in-out infinite;
+      }
+      .balloon.b2 {
+        animation-delay: -1.3s;
+      }
+      .balloon.b3 {
+        animation-delay: -2.6s;
+      }
+      @keyframes sway {
+        0%,
+        100% {
+          transform: rotate(-5deg);
+        }
+        50% {
+          transform: rotate(5deg);
+        }
+      }
+
+      .conf-bit {
+        animation: fall 3.6s linear infinite;
+        transform-box: fill-box;
+      }
+      @keyframes fall {
+        0% {
+          transform: translateY(-20px) rotate(0);
+          opacity: 0;
+        }
+        10% {
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(230px) rotate(420deg);
+          opacity: 0;
+        }
+      }
+
+      .sparkle {
+        animation: twinkle 2.4s ease-in-out infinite;
+        transform-box: fill-box;
+        transform-origin: 50% 50%;
+      }
+      .sparkle.s2 {
+        animation-delay: 0.6s;
+      }
+      .sparkle.s3 {
+        animation-delay: 1.2s;
+      }
+      @keyframes twinkle {
+        0%,
+        100% {
+          transform: scale(0.4) rotate(0);
+          opacity: 0.25;
+        }
+        50% {
+          transform: scale(1) rotate(90deg);
+          opacity: 1;
+        }
+      }
+
+      /* him */
+      .boy {
+        animation: bob 3.2s ease-in-out infinite;
+        transform-box: fill-box;
+        transform-origin: 50% 100%;
+      }
+      @keyframes bob {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-6px);
+        }
+      }
+      .arm-wave {
+        animation: wave 1.05s ease-in-out infinite alternate;
+        transform-box: fill-box;
+        transform-origin: 0% 100%;
+      }
+      @keyframes wave {
+        from {
+          transform: rotate(-14deg);
+        }
+        to {
+          transform: rotate(16deg);
+        }
+      }
+      .arm-carry {
+        animation: offer 3.2s ease-in-out infinite;
+        transform-box: fill-box;
+        transform-origin: 0% 0%;
+      }
+      @keyframes offer {
+        0%,
+        100% {
+          transform: rotate(-3deg);
+        }
+        50% {
+          transform: rotate(3deg);
+        }
+      }
+      .bubble {
+        animation: bubbleIn 0.8s 1.1s cubic-bezier(0.2, 1.5, 0.4, 1) both;
+        transform-box: fill-box;
+        transform-origin: 50% 100%;
+      }
+      .bubble-float {
+        animation: bubbleFloat 3.2s ease-in-out infinite;
+      }
+      @keyframes bubbleIn {
+        from {
+          transform: scale(0);
+          opacity: 0;
+        }
+        to {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+      @keyframes bubbleFloat {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-7px);
+        }
+      }
+      .bubble-tail {
+        transform-box: fill-box;
+        transform-origin: 0% 0%;
+        animation: tailWig 2.2s ease-in-out infinite;
+      }
+      @keyframes tailWig {
+        0%,
+        100% {
+          transform: rotate(0);
+        }
+        50% {
+          transform: rotate(-4deg);
+        }
+      }
+      #boyModel {
+        display: inline;
+      }
+      .model-svg {
+        position: absolute;
+        width: 0;
+        height: 0;
+        overflow: hidden;
+        left: -9999px;
+      }
+      .mini-stage {
+        width: 132px;
+        height: auto;
+        display: block;
+        margin: 0 auto 6px;
+        overflow: visible;
+      }
+      .mini-boy .bubble,
+      .mini-boy .puff {
+        display: none;
+      }
+      .puff {
+        animation: puffUp 3.4s linear infinite;
+        transform-box: fill-box;
+      }
+      .puff.p2 {
+        animation-delay: -1.1s;
+      }
+      .puff.p3 {
+        animation-delay: -2.2s;
+      }
+      @keyframes puffUp {
+        0% {
+          transform: translate(0, 0) scale(0.5);
+          opacity: 0;
+        }
+        20% {
+          opacity: 0.9;
+        }
+        100% {
+          transform: translate(-14px, -44px) scale(1.1);
+          opacity: 0;
+        }
+      }
+
+      /* her */
+      .girl {
+        animation: swaySoft 4s ease-in-out infinite;
+        transform-box: fill-box;
+        transform-origin: 50% 100%;
+      }
+      @keyframes swaySoft {
+        0%,
+        100% {
+          transform: rotate(-1.6deg);
+        }
+        50% {
+          transform: rotate(1.6deg);
+        }
+      }
+      .hands {
+        animation: breathe 2.4s ease-in-out infinite;
+        transform-box: fill-box;
+        transform-origin: 50% 100%;
+      }
+      @keyframes breathe {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-2.5px);
+        }
+      }
+      .flame {
+        animation: flicker 0.45s ease-in-out infinite alternate;
+        transform-box: fill-box;
+        transform-origin: 50% 100%;
+      }
+      .flame.f2 {
+        animation-delay: 0.15s;
+      }
+      .flame.f3 {
+        animation-delay: 0.3s;
+      }
+      @keyframes flicker {
+        from {
+          transform: scaleY(0.85) scaleX(1.05);
+          opacity: 0.85;
+        }
+        to {
+          transform: scaleY(1.15) scaleX(0.92);
+          opacity: 1;
+        }
+      }
+      .hair {
+        animation: hairFlow 3s ease-in-out infinite;
+        transform-box: fill-box;
+        transform-origin: 50% 0%;
+      }
+      @keyframes hairFlow {
+        0%,
+        100% {
+          transform: rotate(-1.4deg);
+        }
+        50% {
+          transform: rotate(1.4deg);
+        }
+      }
+
+      .ticker {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 14px;
+        background: rgba(255, 255, 255, 0.7);
+        border: 2px solid var(--pink);
+        color: var(--pink-dark);
+        font-weight: 700;
+        font-size: 0.9rem;
+        padding: 8px 16px;
+        border-radius: 30px;
+        animation: pulse 2.4s ease-in-out infinite;
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.06);
+        }
+      }
+
+      .balloons {
+        display: flex;
+        justify-content: center;
+        gap: 14px;
+        margin-top: 18px;
+        flex-wrap: wrap;
+      }
+      .balloons span {
+        font-size: 32px;
+        display: inline-block;
+        animation: bob 3s ease-in-out infinite;
+      }
+      .balloons span:nth-child(2) {
+        animation-delay: 0.4s;
+      }
+      .balloons span:nth-child(3) {
+        animation-delay: 0.8s;
+      }
+      .balloons span:nth-child(4) {
+        animation-delay: 1.2s;
+      }
+      @keyframes bob {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-14px);
+        }
+      }
+
+      /* ---------- buttons ---------- */
+      .btn-row {
+        display: flex;
+        gap: 12px;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 26px;
+      }
+      .btn {
+        border: none;
+        cursor: pointer;
+        font-weight: 800;
+        padding: 14px 28px;
+        border-radius: 50px;
+        font-size: 1rem;
+        color: #fff;
+        background: linear-gradient(90deg, var(--pink-dark), var(--pink));
+        box-shadow: 0 10px 22px rgba(232, 71, 138, 0.38);
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s,
+          filter 0.2s;
+      }
+      .btn:hover {
+        transform: translateY(-3px) scale(1.04);
+        box-shadow: 0 14px 26px rgba(232, 71, 138, 0.45);
+      }
+      .btn:active {
+        transform: scale(0.96);
+      }
+      .btn.gold {
+        background: linear-gradient(90deg, #f7b733, var(--gold));
+        color: #5a2340;
+        box-shadow: 0 10px 22px rgba(255, 209, 102, 0.5);
+      }
+      .btn.ghost {
+        background: rgba(255, 255, 255, 0.8);
+        color: var(--pink-dark);
+        border: 2px solid var(--pink);
+        box-shadow: none;
+      }
+      .btn.on {
+        background: linear-gradient(90deg, #2fbf71, #5ad19a);
+      }
+
+      /* ---------- COUNTERS ---------- */
+      .counters {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 16px;
+        margin-top: 8px;
+      }
+      .counter {
+        background: rgba(255, 255, 255, 0.78);
+        backdrop-filter: blur(6px);
+        border-radius: 20px;
+        padding: 22px 14px;
+        text-align: center;
+        border: 2px solid rgba(255, 255, 255, 0.9);
+        box-shadow: var(--shadow);
+        transition: transform 0.3s;
+      }
+      .counter:hover {
+        transform: translateY(-6px) rotate(-1deg);
+      }
+      .counter .num {
+        font-size: clamp(1.5rem, 5vw, 2.1rem);
+        font-weight: 900;
+        color: var(--pink-dark);
+        font-variant-numeric: tabular-nums;
+        line-height: 1.2;
+      }
+      .counter .lbl {
+        font-size: 0.82rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: #8a4a68;
+        margin-top: 4px;
+      }
+
+      /* ---------- MOMENTS TIMELINE ---------- */
+      .timeline {
+        position: relative;
+        padding-left: 34px;
+      }
+      .timeline::before {
+        content: "";
+        position: absolute;
+        left: 11px;
+        top: 6px;
+        bottom: 6px;
+        width: 4px;
+        border-radius: 4px;
+        background: linear-gradient(
+          180deg,
+          var(--pink),
+          var(--gold),
+          var(--blue)
+        );
+      }
+      .moment {
+        position: relative;
+        margin-bottom: 22px;
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(6px);
+        border-radius: 20px;
+        padding: 20px;
+        box-shadow: var(--shadow);
+        border: 2px solid rgba(255, 255, 255, 0.9);
+        transition:
+          transform 0.3s,
+          box-shadow 0.3s;
+      }
+      .moment:hover {
+        transform: translateX(8px) scale(1.01);
+        box-shadow: 0 16px 34px rgba(232, 71, 138, 0.3);
+      }
+      .moment::before {
+        content: "";
+        position: absolute;
+        left: -30px;
+        top: 26px;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: #fff;
+        border: 4px solid var(--pink);
+        box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.6);
+        animation: beacon 2s ease-in-out infinite;
+      }
+      @keyframes beacon {
+        0%,
+        100% {
+          box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.6);
+        }
+        50% {
+          box-shadow: 0 0 0 9px rgba(232, 71, 138, 0.12);
+        }
+      }
+      .moment .when {
+        display: inline-block;
+        font-size: 0.74rem;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #fff;
+        background: linear-gradient(90deg, var(--blue), #8ac7f0);
+        padding: 4px 12px;
+        border-radius: 20px;
+        margin-bottom: 8px;
+      }
+      .moment h3 {
+        margin: 0 0 6px;
+        font-size: 1.15rem;
+        color: var(--pink-dark);
+      }
+      .moment p {
+        margin: 0;
+        font-size: 0.95rem;
+        line-height: 1.65;
+        color: #6b3350;
+      }
+      .moment .stamp {
+        font-size: 1.5rem;
+        margin-bottom: 6px;
+        display: inline-block;
+        animation: floaty 3s ease-in-out infinite;
+      }
+      @keyframes floaty {
+        0%,
+        100% {
+          transform: translateY(0) rotate(-4deg);
+        }
+        50% {
+          transform: translateY(-6px) rotate(4deg);
+        }
+      }
+
+      .photo-row {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 14px;
+        margin-top: 22px;
+      }
+      .photo {
+        position: relative;
+        aspect-ratio: 1/1;
+        border-radius: 18px;
+        overflow: hidden;
+        background: linear-gradient(135deg, #ffd6e6, #ffe9c7);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 4px solid #fff;
+        box-shadow: 0 8px 20px rgba(232, 71, 138, 0.25);
+        transition: transform 0.3s;
+      }
+      .photo:hover {
+        transform: scale(1.05) rotate(-1.5deg);
+      }
+      .photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: 50% 38%; /* keeps faces in the upper part of tall phone photos */
+        display: none;
+      }
+      /* a frame shows its picture as soon as src="..." has a file name in it */
+      .photo img[src]:not([src=""]),
+      .photo.has-img img {
+        display: block;
+      }
+      .photo.has-img .placeholder-label {
+        display: none;
+      }
+      .placeholder-label {
+        text-align: center;
+        font-size: 0.8rem;
+        color: var(--pink-dark);
+        padding: 10px;
+      }
+      .placeholder-label span {
+        display: block;
+        font-size: 26px;
+        margin-bottom: 4px;
+      }
+      .photo input[type="file"] {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        cursor: pointer;
+      }
+
+      /* ---------- LETTER ---------- */
+      .envelope-stage {
+        display: grid;
+        place-items: center;
+        margin-top: 8px;
+      }
+      .envelope {
+        position: relative;
+        width: min(300px, 80vw);
+        height: 200px;
+        cursor: pointer;
+        background: linear-gradient(160deg, #ff9ecb, #ff6fa5);
+        border-radius: 12px;
+        box-shadow: 0 18px 40px rgba(232, 71, 138, 0.4);
+        transition: transform 0.4s;
+        perspective: 900px;
+      }
+      .envelope:hover {
+        transform: translateY(-8px) scale(1.03);
+      }
+      .envelope .flap {
+        position: absolute;
+        inset: 0;
+        height: 56%;
+        background: linear-gradient(160deg, #ffb0d4, #ff85b3);
+        clip-path: polygon(0 0, 100% 0, 50% 100%);
+        transform-origin: top;
+        transition: transform 0.8s cubic-bezier(0.4, -0.2, 0.2, 1);
+        border-radius: 12px 12px 0 0;
+      }
+      .envelope .body {
+        position: absolute;
+        inset: 34% 0 0;
+        background: linear-gradient(160deg, #ff7fb0, #e8478a);
+        border-radius: 0 0 12px 12px;
+      }
+      .envelope .seal {
+        position: absolute;
+        left: 50%;
+        top: 44%;
+        transform: translate(-50%, -50%);
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        background: radial-gradient(circle at 35% 30%, #ffe9a8, var(--gold));
+        display: grid;
+        place-items: center;
+        font-size: 24px;
+        box-shadow: 0 6px 14px rgba(0, 0, 0, 0.18);
+        animation: sealPulse 2s ease-in-out infinite;
+      }
+      @keyframes sealPulse {
+        0%,
+        100% {
+          transform: translate(-50%, -50%) scale(1);
+        }
+        50% {
+          transform: translate(-50%, -50%) scale(1.09);
+        }
+      }
+      .envelope .hint {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -34px;
+        text-align: center;
+        font-size: 0.85rem;
+        color: #8a4a68;
+        font-style: italic;
+      }
+      .envelope.opened {
+        pointer-events: none;
+      }
+      .envelope.opened .flap {
+        transform: rotateX(180deg);
+      }
+      .envelope.opened .seal {
+        opacity: 0;
+        transition: opacity 0.2s;
+      }
+
+      .letter {
+        margin-top: 54px;
+        background: rgba(255, 255, 255, 0.86);
+        backdrop-filter: blur(8px);
+        border-radius: 22px;
+        padding: 30px 26px;
+        border: 2px dashed var(--pink);
+        box-shadow: var(--shadow);
+        display: none;
+      }
+      .letter.show {
+        display: block;
+        animation: pop 0.7s ease-out both;
+      }
+      .letter .hi {
+        text-align: center;
+        font-size: 1.1rem;
+        color: var(--pink-dark);
+        font-weight: 800;
+        margin: 0 0 14px;
+      }
+      .letter p {
+        font-size: 1.05rem;
+        line-height: 1.9;
+        margin: 0 0 14px;
+        text-align: center;
+        white-space: pre-line;
+        min-height: 1em;
+      }
+      .letter .typed::after {
+        content: "▌";
+        color: var(--pink);
+        animation: blink 0.8s steps(2) infinite;
+      }
+      @keyframes blink {
+        50% {
+          opacity: 0;
+        }
+      }
+      .letter .sign {
+        text-align: right;
+        margin-top: 20px;
+        font-style: italic;
+        color: var(--pink-dark);
+        font-weight: 700;
+      }
+
+      /* ---------- REASONS ---------- */
+      .reasons {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(165px, 1fr));
+        gap: 16px;
+      }
+      .reason {
+        background: rgba(255, 255, 255, 0.8);
+        border-radius: 18px;
+        padding: 20px 16px;
+        text-align: center;
+        box-shadow: var(--shadow);
+        cursor: pointer;
+        border: 2px solid transparent;
+        transition:
+          transform 0.35s,
+          border-color 0.35s,
+          background 0.35s;
+        min-height: 130px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 8px;
+      }
+      .reason:hover {
+        transform: translateY(-8px) scale(1.04);
+        border-color: var(--pink);
+        background: #fff;
+      }
+      .reason .ico {
+        font-size: 30px;
+        transition: transform 0.35s;
+      }
+      .reason:hover .ico {
+        transform: scale(1.25) rotate(10deg);
+      }
+      .reason .txt {
+        font-size: 0.92rem;
+        color: #6b3350;
+        line-height: 1.55;
+      }
+
+      /* ---------- LOVE BOX ---------- */
+      .love-box {
+        text-align: center;
+        background: rgba(255, 255, 255, 0.8);
+        border-radius: 20px;
+        padding: 28px 20px;
+        box-shadow: var(--shadow);
+      }
+      .love-line {
+        font-size: 1.12rem;
+        color: var(--pink-dark);
+        font-weight: 700;
+        min-height: 3.2em;
+        display: grid;
+        place-items: center;
+        margin-bottom: 18px;
+        transition: opacity 0.3s;
+      }
+
+      /* ---------- final ---------- */
+      .finale {
+        margin-top: 78px;
+        text-align: center;
+        padding: 34px 20px;
+        background: rgba(255, 255, 255, 0.72);
+        border-radius: 26px;
+        border: 2px solid rgba(255, 255, 255, 0.9);
+        box-shadow: var(--shadow);
+      }
+      .finale .big {
+        font-size: clamp(1.6rem, 6vw, 2.8rem);
+        font-weight: 900;
+        background: linear-gradient(
+          90deg,
+          var(--pink-dark),
+          var(--gold),
+          var(--blue),
+          var(--pink-dark)
+        );
+        background-size: 250% auto;
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        animation: shine 6s linear infinite;
+      }
+      .finale p {
+        color: #6b3350;
+        line-height: 1.8;
+        margin: 14px 0 0;
+      }
+      footer {
+        text-align: center;
+        margin-top: 52px;
+        font-size: 0.88rem;
+        color: var(--pink-dark);
+        opacity: 0.85;
+      }
+
+      canvas#confetti-canvas {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 25;
+      }
+
+      /* ---------- secret ---------- */
+      .secret-btn {
+        position: fixed;
+        bottom: calc(18px + env(safe-area-inset-bottom, 0px));
+        right: 18px;
+        z-index: 26;
+        width: 58px;
+        height: 58px;
+        border-radius: 50%;
+        border: none;
+        background: linear-gradient(135deg, var(--pink), var(--gold));
+        color: #fff;
+        font-size: 24px;
+        cursor: pointer;
+        box-shadow: 0 8px 20px rgba(232, 71, 138, 0.45);
+        animation: pulse 2.2s ease-in-out infinite;
+      }
+      .overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 40;
+        background: rgba(90, 35, 64, 0.6);
+        backdrop-filter: blur(4px);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      }
+      .overlay.show {
+        display: flex;
+        animation: fade 0.3s ease-out;
+      }
+      @keyframes fade {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      .envelope-card {
+        background: #fff;
+        border-radius: 22px;
+        max-width: 430px;
+        width: 100%;
+        padding: 32px 26px;
+        text-align: center;
+        position: relative;
+        box-shadow: 0 24px 60px rgba(0, 0, 0, 0.32);
+        animation: pop 0.45s ease-out;
+      }
+      .envelope-card .icon {
+        font-size: 46px;
+        margin-bottom: 10px;
+        animation: floaty 3s ease-in-out infinite;
+        display: inline-block;
+      }
+      .envelope-card h3 {
+        color: var(--pink-dark);
+        margin: 0 0 14px;
+      }
+      .envelope-card p {
+        font-size: 1.05rem;
+        line-height: 1.75;
+        margin: 0;
+      }
+      .close-btn {
+        margin-top: 22px;
+        border: none;
+        background: linear-gradient(90deg, var(--pink-dark), var(--pink));
+        color: #fff;
+        padding: 11px 28px;
+        border-radius: 30px;
+        cursor: pointer;
+        font-weight: 700;
+      }
+
+      .hint-float {
+        position: fixed;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: calc(18px + env(safe-area-inset-bottom, 0px));
+        z-index: 24;
+        background: rgba(255, 255, 255, 0.85);
+        color: var(--pink-dark);
+        padding: 9px 18px;
+        border-radius: 30px;
+        font-size: 0.82rem;
+        font-weight: 700;
+        box-shadow: 0 6px 16px rgba(232, 71, 138, 0.3);
+        animation: floatUp 2.6s ease-in-out infinite;
+        pointer-events: none;
+        transition: opacity 0.5s;
+      }
+      @keyframes floatUp {
+        0%,
+        100% {
+          transform: translate(-50%, 0);
+        }
+        50% {
+          transform: translate(-50%, -7px);
+        }
+      }
+      .hint-float.hide {
+        opacity: 0;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+        html {
+          scroll-behavior: auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="progress"></div>
+    <div class="glow a"></div>
+    <div class="glow b"></div>
+    <div class="hearts" id="hearts"></div>
+    <canvas id="confetti-canvas"></canvas>
+
+    <div class="wrap">
+      <!-- ================= HERO ================= -->
+      <header class="hero">
+        <div class="kicker">✦ Today is all about you ✦</div>
+        <h1>Happy Birthday</h1>
+        <div class="name" id="heroName">Babe</div>
+        <p class="tagline" id="heroTag">
+          The whole world celebrates my favourite person today — and honestly,
+          they should.
+        </p>
+
+        <!-- ===== the scene: he stands beside her, waves, wishes her happy birthday ===== -->
+        <div class="stage-shell">
+          <svg
+            class="stage"
+            viewBox="0 0 420 300"
+            role="img"
+            aria-label="A boy standing beside a girl, waving and wishing her a happy birthday"
+          >
+            <!-- floor -->
+            <ellipse
+              cx="210"
+              cy="248"
+              rx="182"
+              ry="15"
+              fill="rgba(255,255,255,.6)"
+            />
+            <ellipse
+              cx="112"
+              cy="246"
+              rx="40"
+              ry="7"
+              fill="rgba(232,71,138,.12)"
+            />
+            <ellipse
+              cx="300"
+              cy="246"
+              rx="44"
+              ry="7"
+              fill="rgba(90,140,190,.14)"
+            />
+
+            <!-- balloons -->
+            <g class="balloon b1">
+              <ellipse cx="34" cy="52" rx="20" ry="25" fill="#ff6fa5" />
+              <path d="M34,77 q6,8 0,12 q-6,-4 0,-12" fill="#ff6fa5" />
+              <path
+                d="M34,89 q10,22 -4,44"
+                stroke="rgba(120,40,80,.45)"
+                stroke-width="2"
+                fill="none"
+              />
+            </g>
+            <g class="balloon b2">
+              <ellipse cx="392" cy="46" rx="18" ry="23" fill="#7ec8ff" />
+              <path d="M392,69 q6,8 0,12 q-6,-4 0,-12" fill="#7ec8ff" />
+              <path
+                d="M392,81 q-10,20 4,40"
+                stroke="rgba(40,90,130,.4)"
+                stroke-width="2"
+                fill="none"
+              />
+            </g>
+            <g class="balloon b3">
+              <ellipse cx="60" cy="120" rx="13" ry="16" fill="#ffd166" />
+              <path d="M60,136 q5,6 0,9 q-5,-3 0,-9" fill="#ffd166" />
+            </g>
+
+            <!-- sparkles -->
+            <g fill="#ffd166">
+              <path
+                class="sparkle s1"
+                d="M52,156 l3,7 7,3 -7,3 -3,7 -3,-7 -7,-3 7,-3 z"
+              />
+              <path
+                class="sparkle s2"
+                d="M380,148 l3,7 7,3 -7,3 -3,7 -3,-7 -7,-3 7,-3 z"
+              />
+              <path
+                class="sparkle s3"
+                d="M206,52 l2.5,6 6,2.5 -6,2.5 -2.5,6 -2.5,-6 -6,-2.5 6,-2.5 z"
+              />
+            </g>
+
+            <!-- falling confetti -->
+            <g>
+              <rect
+                class="conf-bit"
+                x="20"
+                y="40"
+                width="8"
+                height="12"
+                rx="2"
+                fill="#ff6fa5"
+              />
+              <rect
+                class="conf-bit"
+                x="120"
+                y="20"
+                width="7"
+                height="11"
+                rx="2"
+                fill="#5aa9e6"
+                style="animation-delay: -1.2s"
+              />
+              <rect
+                class="conf-bit"
+                x="250"
+                y="30"
+                width="8"
+                height="12"
+                rx="2"
+                fill="#ffd166"
+                style="animation-delay: -2.4s"
+              />
+              <rect
+                class="conf-bit"
+                x="360"
+                y="20"
+                width="7"
+                height="11"
+                rx="2"
+                fill="#ff8fb3"
+                style="animation-delay: -0.6s"
+              />
+              <rect
+                class="conf-bit"
+                x="190"
+                y="10"
+                width="7"
+                height="11"
+                rx="2"
+                fill="#7ec8ff"
+                style="animation-delay: -1.8s"
+              />
+            </g>
+
+            <!-- ============ HE (the boy who wishes her) ============ -->
+            <!-- the character itself lives in a hidden model <svg> at the end of the body,
+             then gets cloned here, so the same boy can appear in more than one place -->
+            <g transform="translate(300,238)" data-boy></g>
+
+            <!-- ============ SHE (with her cake) ============ -->
+            <g transform="translate(112,240)">
+              <g class="girl">
+                <ellipse
+                  cx="0"
+                  cy="4"
+                  rx="25"
+                  ry="7"
+                  fill="rgba(232,71,138,.18)"
+                />
+
+                <!-- legs & shoes -->
+                <rect
+                  x="-14"
+                  y="-38"
+                  width="11"
+                  height="34"
+                  rx="5.5"
+                  fill="#f7c9a4"
+                />
+                <rect
+                  x="3"
+                  y="-38"
+                  width="11"
+                  height="34"
+                  rx="5.5"
+                  fill="#f0b892"
+                />
+                <rect
+                  x="-18"
+                  y="-8"
+                  width="17"
+                  height="9"
+                  rx="4.5"
+                  fill="#e8478a"
+                />
+                <rect
+                  x="1"
+                  y="-8"
+                  width="17"
+                  height="9"
+                  rx="4.5"
+                  fill="#e8478a"
+                />
+
+                <!-- dress -->
+                <path
+                  d="M-19,-44 L19,-44 L31,-6 Q0,4 -31,-6 Z"
+                  fill="#ff8fb3"
+                />
+                <path
+                  d="M-19,-44 L19,-44 L22,-58 Q0,-63 -22,-58 Z"
+                  fill="#ffb0d4"
+                />
+                <path
+                  d="M-31,-6 Q0,4 31,-6"
+                  stroke="#ffd166"
+                  stroke-width="4"
+                  fill="none"
+                />
+
+                <!-- hair behind her shoulders -->
+                <g class="hair">
+                  <ellipse cx="0" cy="-133" rx="30" ry="32" fill="#4a2f24" />
+                  <rect
+                    x="-30"
+                    y="-132"
+                    width="12"
+                    height="52"
+                    rx="6"
+                    fill="#4a2f24"
+                  />
+                  <rect
+                    x="18"
+                    y="-132"
+                    width="12"
+                    height="52"
+                    rx="6"
+                    fill="#4a2f24"
+                  />
+                </g>
+
+                <!-- arms holding the cake, cake in front of her chest -->
+                <g class="hands">
+                  <path
+                    d="M-20,-60 q-13,8 -12,20"
+                    stroke="#f7c9a4"
+                    stroke-width="10"
+                    fill="none"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M20,-60 q13,8 12,20"
+                    stroke="#f7c9a4"
+                    stroke-width="10"
+                    fill="none"
+                    stroke-linecap="round"
+                  />
+                  <g>
+                    <rect
+                      x="-36"
+                      y="-44"
+                      width="72"
+                      height="9"
+                      rx="4.5"
+                      fill="#fff"
+                    />
+                    <rect
+                      x="-28"
+                      y="-66"
+                      width="56"
+                      height="24"
+                      rx="5"
+                      fill="#ffe3ef"
+                    />
+                    <path
+                      d="M-28,-54 q7,8 14,0 q7,8 14,0 q7,8 14,0 q7,8 14,0 v-8 h-56 z"
+                      fill="#ff6fa5"
+                    />
+                    <rect
+                      x="-24"
+                      y="-66"
+                      width="48"
+                      height="7"
+                      rx="3.5"
+                      fill="#ffb0d4"
+                    />
+                    <g stroke="#ff6fa5" stroke-width="3" stroke-linecap="round">
+                      <path d="M-14,-66 v-13" />
+                      <path d="M0,-66 v-17" />
+                      <path d="M14,-66 v-13" />
+                    </g>
+                    <g fill="#ffd166">
+                      <ellipse
+                        class="flame f1"
+                        cx="-14"
+                        cy="-83"
+                        rx="4.5"
+                        ry="7"
+                      />
+                      <ellipse class="flame f2" cx="0" cy="-87" rx="5" ry="8" />
+                      <ellipse
+                        class="flame f3"
+                        cx="14"
+                        cy="-83"
+                        rx="4.5"
+                        ry="7"
+                      />
+                    </g>
+                  </g>
+                </g>
+
+                <!-- head -->
+                <g class="girl-head">
+                  <ellipse cx="0" cy="-134" rx="25" ry="27" fill="#f7c9a4" />
+                  <path
+                    d="M-25,-136 q0,-28 25,-28 q25,0 25,28 q-6,-14 -13,-13 q-6,9 -20,7 q-11,-2 -17,6 z"
+                    fill="#4a2f24"
+                  />
+                  <path
+                    d="M-12,-138 q5,-6 10,0"
+                    stroke="#3a2b23"
+                    stroke-width="3"
+                    fill="none"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M2,-138 q5,-6 10,0"
+                    stroke="#3a2b23"
+                    stroke-width="3"
+                    fill="none"
+                    stroke-linecap="round"
+                  />
+                  <circle
+                    cx="-16"
+                    cy="-128"
+                    r="5"
+                    fill="#ff9db5"
+                    opacity=".65"
+                  />
+                  <circle
+                    cx="16"
+                    cy="-128"
+                    r="5"
+                    fill="#ff9db5"
+                    opacity=".65"
+                  />
+                  <path
+                    d="M-8,-125 q8,10 16,0"
+                    stroke="#c2557a"
+                    stroke-width="3"
+                    fill="none"
+                    stroke-linecap="round"
+                  />
+                </g>
+
+                <!-- her happy little sparkles -->
+                <g fill="#ffd166">
+                  <text class="puff p2" x="-32" y="-158" font-size="13">
+                    ✨
+                  </text>
+                  <text class="puff" x="28" y="-150" font-size="15">💫</text>
+                </g>
+              </g>
+            </g>
+          </svg>
+        </div>
+
+        <div class="ticker" id="ticker">🎂 Making a wish…</div>
+
+        <div class="balloons">
+          <span>🎈</span><span>🎉</span><span>🎀</span><span>💖</span>
+        </div>
+
+        <div class="btn-row">
+          <button class="btn" onclick="burstConfetti(180)">
+            🎉 Celebrate!
+          </button>
+          <button class="btn gold" id="musicBtn" onclick="toggleMusic()">
+            🎵 Play our song
+          </button>
+          <button
+            class="btn ghost"
+            onclick="document.getElementById('letter').scrollIntoView()"
+          >
+            💌 Read my letter
+          </button>
+        </div>
+      </header>
+
+      <!-- ================= COUNTERS ================= -->
+      <section class="section reveal" id="counters-sec">
+        <h2>Us, in numbers ⏳</h2>
+        <p class="sub">time spent loving you</p>
+        <div class="divider">💗</div>
+        <div class="counters" id="counters"></div>
+      </section>
+
+      <!-- ================= OUR MOMENTS ================= -->
+      <section class="section reveal" id="moments">
+        <h2>Our Moments 📸</h2>
+        <p class="sub">a few of the days I keep replaying in my head</p>
+        <div class="divider">✨</div>
+
+        <div class="timeline">
+          <article class="moment reveal">
+            <div class="stamp">🥰</div>
+            <span class="when">Chapter One</span>
+            <h3>The day I saw you</h3>
+            <p>
+              Nobody told me that a single glance could rearrange my whole life.
+              But there you were — and suddenly the world got quieter, and
+              louder, all at once.
+            </p>
+          </article>
+
+          <article class="moment reveal">
+            <div class="stamp">🌧️</div>
+            <span class="when">Chapter Two</span>
+            <h3>My umbrella, your smile</h3>
+            <p>
+              It was barely raining, but I held mine over you anyway. You
+              pretended not to notice. I noticed you noticing.
+            </p>
+          </article>
+
+          <article class="moment reveal">
+            <div class="stamp">🎧</div>
+            <span class="when">Chapter Three</span>
+            <h3>Our song on repeat</h3>
+            <p>
+              Somewhere between your bad singing and my terrible guitar, we made
+              a tradition. Now every song that reminds me of you has our little
+              story in it.
+            </p>
+          </article>
+
+          <article class="moment reveal">
+            <div class="stamp">🍕</div>
+            <span class="when">Chapter Four</span>
+            <h3>Two plates, one table</h3>
+            <p>
+              Nothing fancy — just cold pizza at midnight and the best
+              conversation I've ever had. Turns out I don't need much, as long
+              as it's you.
+            </p>
+          </article>
+
+          <article class="moment reveal">
+            <div class="stamp">😤</div>
+            <span class="when">Chapter Five</span>
+            <h3>The day you were upset</h3>
+            <p>
+              I didn't have perfect words. I just stayed. And you fell asleep on
+              my shoulder. That was the moment I decided — this is the person.
+            </p>
+          </article>
+
+          <article class="moment reveal">
+            <div class="stamp">🎂</div>
+            <span class="when">Chapter Six · Today</span>
+            <h3>And now — your birthday</h3>
+            <p>
+              Same face, more beautiful. Same laugh, a little louder. I'm not
+              going anywhere, baby. Happy Birthday. 🎉
+            </p>
+          </article>
+        </div>
+
+        <p class="sub" style="margin-top: 26px">
+          In my memories  📷
+        </p>
+        <!--
+        ╔══════════════════════════════════════════════════════════════╗
+        ║  📸  HOW TO ADD / CHANGE THE PHOTOS                           ║
+        ║                                                              ║
+        ║  1. Put the picture file in this same folder                  ║
+        ║     (the folder that contains this .html file)                ║
+        ║                                                              ║
+        ║  2. Below, change the text inside src="..." to the file name  ║
+        ║     Example:  us-beach.jpg      <img src="us-beach.jpg">      ║
+        ║     Example:  IMG_2451.jpg      <img src="IMG_2451.jpg">      ║
+        ║                                                              ║
+        ║  3. To leave a frame empty, make src empty:  <img src="">      ║
+        ║                                                              ║
+        ║  Works with .jpg, .jpeg, .png, .webp, .gif                    ║
+        ╚══════════════════════════════════════════════════════════════╝
+        -->
+        <div class="photo-row" id="gallery">
+          <label class="photo">
+            <input type="file" accept="image/*" data-slot="0" />
+            <img src="photo1.jpg" alt="Us, moment 1" />
+            <span class="placeholder-label"><span>📷</span>Tap to add</span>
+          </label>
+
+          <label class="photo">
+            <input type="file" accept="image/*" data-slot="1" />
+            <img src="photo2.jpg" alt="Us, moment 2" />
+            <span class="placeholder-label"><span>💖</span>Tap to add</span>
+          </label>
+
+          <label class="photo">
+            <input type="file" accept="image/*" data-slot="2" />
+            <img src="photo3.jpg" alt="Us, moment 3" />
+            <span class="placeholder-label"><span>🌸</span>Tap to add</span>
+          </label>
+
+          <label class="photo">
+            <input type="file" accept="image/*" data-slot="3" />
+            <img src="photo4.jpg" alt="Us, moment 4" />
+            <span class="placeholder-label"><span>✨</span>Tap to add</span>
+          </label>
+
+          <label class="photo">
+            <input type="file" accept="image/*" data-slot="4" />
+            <img src="photo5.jpg" alt="Us, moment 5" />
+            <span class="placeholder-label"><span>🎉</span>Tap to add</span>
+          </label>
+
+          <label class="photo">
+            <input type="file" accept="image/*" data-slot="5" />
+            <img src="photo6.jpg" alt="Us, moment 6" />
+            <span class="placeholder-label"><span>💌</span>Tap to add</span>
+          </label>
+        </div>
+      </section>
+
+      <!-- ================= LETTER ================= -->
+      <section class="section reveal" id="letter">
+        <h2>A letter from me 💌</h2>
+        <p class="sub">tap the envelope</p>
+        <div class="divider">💗</div>
+
+        <div class="envelope-stage">
+          <div
+            class="envelope"
+            id="envelope"
+            onclick="openEnvelope()"
+            role="button"
+            tabindex="0"
+          >
+            <div class="flap"></div>
+            <div class="body"></div>
+            <div class="seal">💌</div>
+            <div class="hint">tap to open</div>
+          </div>
+        </div>
+
+        <div class="letter" id="letterCard">
+          <p class="hi">To my favourite person 💕</p>
+          <p id="typed" class="typed"></p>
+          <div class="sign" id="letterSign">— Yours, always 💙</div>
+        </div>
+      </section>
+
+      <!-- ================= REASONS ================= -->
+      <section class="section reveal">
+        <h2>Reasons I love you 💞</h2>
+        <p class="sub">hover or tap them</p>
+        <div class="divider">✨</div>
+        <div class="reasons" id="reasons"></div>
+      </section>
+
+      <!-- ================= LOVE GENERATOR ================= -->
+      <section class="section reveal">
+        <h2>A Little Happiness Boost 🌟</h2>
+        <div class="love-box">
+          <div class="love-line" id="loveLine">
+            Tap the button for a sweet surprise 💫
+          </div>
+          <div class="btn-row" style="margin-top: 0">
+            <button class="btn gold" onclick="newLoveLine()">
+              ✨ Make me smile
+            </button>
+            <button class="btn ghost" onclick="burstConfetti(120)">
+              🎊 More confetti
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= FINALE ================= -->
+      <section class="section reveal">
+        <div class="finale">
+          <svg
+            class="mini-stage"
+            viewBox="-70 -178 132 190"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <g transform="translate(40,214)">
+              <g data-boy class="mini-boy"></g>
+            </g>
+          </svg>
+          <div class="big" id="finaleText">Happy Birthday, Babe 🎉</div>
+          <p>
+            Thank you for being born. Not for your birthday — for everything.
+            May this year be as soft, as bright, and as kind as you are.
+            <br /><br />
+            <strong id="finaleSign">— Your boy 💙</strong>
+          </p>
+          <div class="btn-row">
+            <button class="btn" onclick="burstConfetti(260)">
+              🎆 One more time !
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        Made with 💗, patience and far too much love — just for her.
+      </footer>
+    </div>
+
+    <div class="hint-float" id="hintFloat">⬇ scroll down, I wrote more 💕</div>
+    <button class="secret-btn" onclick="openSecret()" title="Shh... a secret">
+      🔒
+    </button>
+
+    <div
+      class="overlay"
+      id="overlay"
+      onclick="if (event.target === this) closeSecret();"
+    >
+      <div class="envelope-card">
+        <div class="icon">💌</div>
+        <h3>A secret, only you can read...</h3>
+        <p id="secretText"></p>
+        <button class="close-btn" onclick="closeSecret()">Close 💗</button>
+      </div>
+    </div>
+
+    <!-- ==========================================================================
+     THE MODEL: him, standing, waving, wishing her a happy birthday.
+     This one drawing is cloned into every scene that needs him.
+     (feet sit at x=0 / y=0 so it is easy to place anywhere)
+     ========================================================================== -->
+    <svg
+      class="model-svg"
+      width="0"
+      height="0"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <g id="boyModel" class="boy">
+        <ellipse cx="0" cy="4" rx="27" ry="7" fill="rgba(90,35,64,.16)" />
+
+        <!-- legs + shoes -->
+        <rect x="-17" y="-56" width="13" height="52" rx="6.5" fill="#43506b" />
+        <rect x="4" y="-56" width="13" height="52" rx="6.5" fill="#3c4760" />
+        <rect x="-22" y="-9" width="20" height="10" rx="5" fill="#2b3247" />
+        <rect x="2" y="-9" width="20" height="10" rx="5" fill="#2b3247" />
+
+        <!-- torso -->
+        <path d="M-21,-58 L21,-58 L25,-100 Q0,-107 -25,-100 Z" fill="#5aa9e6" />
+        <path d="M-21,-58 L21,-58 L22,-66 Q0,-71 -22,-66 Z" fill="#7ec8ff" />
+        <path d="M-11,-101 L0,-90 L11,-101 Q0,-96 -11,-101 Z" fill="#fff" />
+
+        <!-- neck -->
+        <rect x="-7" y="-112" width="14" height="13" rx="5" fill="#f0b892" />
+
+        <!-- head -->
+        <g class="boy-head">
+          <ellipse cx="0" cy="-138" rx="27" ry="29" fill="#f7c9a4" />
+          <path
+            d="M-27,-140 q0,-31 27,-31 q27,0 27,31 q-5,-15 -13,-15 q-4,11 -23,9 q-13,-2 -18,6 z"
+            fill="#3a2b23"
+          />
+          <circle cx="-27" cy="-136" r="5.5" fill="#f0b892" />
+          <circle cx="27" cy="-136" r="5.5" fill="#f0b892" />
+          <path
+            d="M-14,-142 q5.5,-6.5 11,0"
+            stroke="#3a2b23"
+            stroke-width="3.2"
+            fill="none"
+            stroke-linecap="round"
+          />
+          <path
+            d="M3,-142  q5.5,-6.5 11,0"
+            stroke="#3a2b23"
+            stroke-width="3.2"
+            fill="none"
+            stroke-linecap="round"
+          />
+          <circle cx="-18" cy="-131" r="5.5" fill="#ff9db5" opacity=".6" />
+          <circle cx="18" cy="-131" r="5.5" fill="#ff9db5" opacity=".6" />
+          <path
+            d="M-10,-127 q10,11 20,0"
+            stroke="#c2557a"
+            stroke-width="3.2"
+            fill="none"
+            stroke-linecap="round"
+          />
+        </g>
+
+        <!-- arm that carries her gift -->
+        <g transform="translate(-21,-92)">
+          <g class="arm-carry">
+            <path
+              d="M0,0 q-17,11 -21,29"
+              stroke="#f7c9a4"
+              stroke-width="12"
+              fill="none"
+              stroke-linecap="round"
+            />
+            <g>
+              <rect
+                x="-44"
+                y="25"
+                width="36"
+                height="30"
+                rx="4"
+                fill="#ff6fa5"
+              />
+              <rect
+                x="-44"
+                y="25"
+                width="36"
+                height="10"
+                rx="4"
+                fill="#ffd166"
+              />
+              <rect x="-29" y="25" width="7" height="30" fill="#ffd166" />
+              <path d="M-26,25 q-13,-15 -1,-15 q11,0 1,15" fill="#ffd166" />
+              <path d="M-20,25 q13,-15 1,-15 q-11,0 -1,15" fill="#ffd166" />
+            </g>
+          </g>
+        </g>
+
+        <!-- arm that waves at her (kept clear of his face) -->
+        <g transform="translate(24,-90)">
+          <g class="arm-wave">
+            <path
+              d="M0,0 q18,1 22,-21"
+              stroke="#f7c9a4"
+              stroke-width="12"
+              fill="none"
+              stroke-linecap="round"
+            />
+            <circle cx="24" cy="-29" r="8.5" fill="#f7c9a4" />
+            <path
+              d="M20,-37 v-6 M25,-38 v-6 M29,-36 v-5"
+              stroke="#f7c9a4"
+              stroke-width="4"
+              stroke-linecap="round"
+            />
+          </g>
+        </g>
+
+        <!-- what he says to her -->
+        <g class="bubble" filter="drop-shadow(0 6px 10px rgba(232,71,138,.28))">
+          <g class="bubble-float">
+            <path
+              class="bubble-tail"
+              d="M-30,-148 L-26,-140 L-30,-132 Z"
+              fill="#fff"
+            />
+            <rect
+              x="-118"
+              y="-170"
+              width="88"
+              height="60"
+              rx="16"
+              fill="#fff"
+            />
+            <text
+              x="-74"
+              y="-150"
+              text-anchor="middle"
+              font-size="14"
+              font-weight="800"
+              fill="#e8478a"
+              font-family="Segoe UI, sans-serif"
+            >
+              Happy
+            </text>
+            <text
+              x="-74"
+              y="-134"
+              text-anchor="middle"
+              font-size="14"
+              font-weight="800"
+              fill="#e8478a"
+              font-family="Segoe UI, sans-serif"
+            >
+              Birthday!
+            </text>
+            <text
+              x="-74"
+              y="-118"
+              text-anchor="middle"
+              font-size="14"
+              font-weight="800"
+              fill="#e8478a"
+              font-family="Segoe UI, sans-serif"
+            >
+              my love
+            </text>
+          </g>
+        </g>
+
+        <!-- little hearts he sends up -->
+        <g fill="#ff6fa5">
+          <text class="puff" x="2" y="-180" font-size="16">💗</text>
+          <text class="puff p2" x="-20" y="-186" font-size="13">💕</text>
+          <text class="puff p3" x="24" y="-188" font-size="11">✨</text>
+        </g>
+      </g>
+    </svg>
+
+    <script>
+      /* =========================================================
+   ⚙️  EDIT ME  — change these to make it yours
+   ========================================================= */
+      const CONFIG = {
+        herName: "Babe",
+        fromName: "Your boy",
+
+        /* ---- your numbers ---- */
+        daysTogether: 1618, // 1,618 days
+        hoursTogether: 48832, // 48,832 hours
+        togetherSince: "2022-04-23", // yyyy-mm-dd — the date that makes it 1,618 days today
+
+        heroTag:
+          "The whole world celebrates my favourite person today — and honestly, they should.",
+      };
+      /* ========================================================= */
+
+      const $ = (s) => document.querySelector(s);
+
+      /* ---------- personalised copy ---------- */
+      $("#heroName").textContent = CONFIG.herName;
+      $("#heroTag").textContent = CONFIG.heroTag;
+      $("#finaleText").textContent = `Happy Birthday, ${CONFIG.herName} 🎉`;
+      $("#letterSign").textContent = `— ${CONFIG.fromName} 💙`;
+      $("#finaleSign").textContent = `— ${CONFIG.fromName} 💙`;
+      document.title = `Happy Birthday ${CONFIG.herName} 🎂`;
+
+      /* ---------- clone the boy into extra spots ---------- */
+      const boyModel = document.getElementById("boyModel");
+      document.querySelectorAll("[data-boy]").forEach((slot) => {
+        const copy = boyModel.cloneNode(true);
+        copy.removeAttribute("id"); // no duplicate ids in the DOM
+        slot.appendChild(copy);
+      });
+
+      /* ---------- floating background ---------- */
+      const hearts = $("#hearts");
+      const floaty = ["💖", "💕", "🎈", "✨", "🌸", "💗", "🥳", "🎀"];
+      for (let i = 0; i < 26; i++) {
+        const h = document.createElement("div");
+        h.className = "heart";
+        h.textContent = floaty[(Math.random() * floaty.length) | 0];
+        h.style.left = Math.random() * 100 + "%";
+        h.style.animationDuration = 7 + Math.random() * 9 + "s";
+        h.style.animationDelay = "-" + (Math.random() * 12).toFixed(1) + "s";
+        h.style.fontSize = 15 + Math.random() * 24 + "px";
+        hearts.appendChild(h);
+      }
+
+      /* ---------- photos ----------
+         The photos come straight from the <img src="..."> lines in the photo
+         section of this file — that is the only place you need to edit.
+         This code just (a) shows whatever src points to, (b) falls back to
+         the empty "tap to add" frame if a file is missing, and (c) lets her
+         swap a photo on her own phone, which is saved in that browser only. */
+      const KEY = "bd-photos-" + CONFIG.herName;
+      function savePhoto(i, data) {
+        try {
+          const all = JSON.parse(localStorage.getItem(KEY) || "{}");
+          all[i] = data;
+          localStorage.setItem(KEY, JSON.stringify(all));
+        } catch (e) {
+          /* storage full or blocked — no problem */
+        }
+      }
+      function loadPhotos() {
+        let all = {};
+        try {
+          all = JSON.parse(localStorage.getItem(KEY) || "{}");
+        } catch (e) {}
+        document.querySelectorAll(".photo").forEach((label) => {
+          const img = label.querySelector("img");
+          const slot = label.querySelector("input").dataset.slot;
+
+          const show = (src) => {
+            img.src = src;
+            label.classList.add("has-img");
+          };
+          const clear = () => {
+            img.removeAttribute("src");
+            label.classList.remove("has-img");
+          };
+          /* file not found, or src left empty -> empty frame, no errors */
+          img.addEventListener("error", clear);
+          img.addEventListener("load", () => label.classList.add("has-img"));
+
+          const fromCode = img.getAttribute("src") || "";
+          const tapped = all[slot];
+          if (tapped) show(tapped);
+          else if (fromCode) {
+            if (img.complete && img.naturalWidth > 0) label.classList.add("has-img");
+          } else clear();
+
+          /* she can still swap one herself, on her own phone */
+          label.querySelector("input").addEventListener("change", (e) => {
+            const file = e.target.files && e.target.files[0];
+            if (!file) return;
+            const fr = new FileReader();
+            fr.onload = (ev) => {
+              show(ev.target.result);
+              savePhoto(slot, ev.target.result);
+              burstConfetti(60);
+            };
+            fr.readAsDataURL(file);
+          });
+        });
+      }
+      loadPhotos();
+
+      /* ---------- counters ----------
+         1,618 days  ·  48,832 hours  ·  seconds still counting
+         The day/hour figures come from CONFIG so they always read exactly as
+         you set them. The seconds tick live from `togetherSince` (plus your
+         day count as a floor, so it can never show less than the days card). */
+      const since = new Date(CONFIG.togetherSince + "T00:00:00");
+      const msNow = () => Math.max(0, Date.now() - since.getTime());
+      const totalDays = () =>
+        Math.max(CONFIG.daysTogether, Math.floor(msNow() / 86400000));
+      const totalHours = () =>
+        Math.max(CONFIG.hoursTogether, totalDays() * 24);
+      const totalSecs = () => Math.max(totalDays() * 86400, Math.floor(msNow() / 1000));
+
+      const card = (id, lbl) =>
+        `<div class="counter"><div class="num" id="${id}">0</div><div class="lbl">${lbl}</div></div>`;
+      $("#counters").innerHTML =
+        card("cDays", "days together") +
+        card("cHours", "hours loved") +
+        card("cSecs", "seconds… still counting");
+
+      function countUp(el, to, ms = 1800) {
+        const t0 = performance.now();
+        (function step(t) {
+          const p = Math.min(1, (t - t0) / ms);
+          const e = 1 - Math.pow(1 - p, 3);
+          el.textContent = Math.floor(to * e).toLocaleString();
+          if (p < 1) requestAnimationFrame(step);
+        })(t0);
+      }
+      let counted = false;
+      function fillCounters() {
+        if (counted) return;
+        counted = true;
+        countUp($("#cDays"), totalDays());
+        countUp($("#cHours"), totalHours(), 2200);
+      }
+
+      /* seconds: start already-filled, then tick every second */
+      const secsEl = $("#cSecs");
+      if (secsEl) {
+        secsEl.textContent = totalSecs().toLocaleString();
+        setInterval(() => {
+          secsEl.textContent = totalSecs().toLocaleString();
+        }, 1000);
+      }
+
+      /* ---------- reveal on scroll ---------- */
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((en) => {
+            if (en.isIntersecting) {
+              en.target.classList.add("in");
+              if (en.target.id === "counters-sec") fillCounters();
+              io.unobserve(en.target);
+            }
+          });
+        },
+        { threshold: 0.16 },
+      );
+
+      document.querySelectorAll(".reveal").forEach((el, i) => {
+        el.style.transitionDelay = (i % 4) * 0.08 + "s";
+        io.observe(el);
+      });
+
+      /* ---------- scroll progress + hide the hint ---------- */
+      const prog = $("#progress"),
+        hintFloat = $("#hintFloat");
+
+      /* if the page is jumped (e.g. a button scrolls somewhere), don't leave
+   sections above the fold stuck invisible */
+      function revealPast() {
+        document.querySelectorAll(".reveal:not(.in)").forEach((el) => {
+          if (el.getBoundingClientRect().top < innerHeight * 0.92) {
+            el.classList.add("in");
+            if (el.id === "counters-sec") fillCounters();
+            io.unobserve(el);
+          }
+        });
+      }
+
+      function onScroll() {
+        const h = document.documentElement.scrollHeight - innerHeight;
+        prog.style.width = (h > 0 ? (scrollY / h) * 100 : 0) + "%";
+        if (scrollY > 260) hintFloat.classList.add("hide");
+        revealPast();
+      }
+      addEventListener("scroll", onScroll, { passive: true });
+      onScroll();
+
+      /* ---------- confetti ---------- */
+      const canvas = $("#confetti-canvas");
+      const ctx = canvas.getContext("2d");
+      function resize() {
+        canvas.width = innerWidth;
+        canvas.height = innerHeight;
+      }
+      resize();
+      addEventListener("resize", resize);
+
+      let parts = [],
+        running = false;
+      function burstConfetti(n = 140) {
+        const colors = [
+          "#ff6fa5",
+          "#ffd166",
+          "#ff9ecb",
+          "#ffe08a",
+          "#ff8fb3",
+          "#7ec8ff",
+          "#ffffff",
+        ];
+        for (let i = 0; i < n; i++) {
+          parts.push({
+            x: innerWidth * (0.15 + Math.random() * 0.7),
+            y: innerHeight * 0.3,
+            vx: (Math.random() - 0.5) * 15,
+            vy: (Math.random() - 1.3) * 15,
+            s: 5 + Math.random() * 7,
+            c: colors[(Math.random() * colors.length) | 0],
+            r: Math.random() * 360,
+            vr: (Math.random() - 0.5) * 22,
+            life: 100 + Math.random() * 50,
+            heart: Math.random() < 0.18,
+          });
+        }
+        if (!running) {
+          running = true;
+          tick();
+        }
+      }
+      function drawHeart(x, y, s) {
+        ctx.beginPath();
+        ctx.moveTo(x, y + s * 0.6);
+        ctx.bezierCurveTo(
+          x - s,
+          y - s * 0.3,
+          x - s * 0.5,
+          y - s,
+          x,
+          y - s * 0.35,
+        );
+        ctx.bezierCurveTo(
+          x + s * 0.5,
+          y - s,
+          x + s,
+          y - s * 0.3,
+          x,
+          y + s * 0.6,
+        );
+        ctx.fill();
+      }
+      function tick() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        parts.forEach((p) => {
+          p.x += p.vx;
+          p.y += p.vy;
+          p.vy += 0.34;
+          p.vx *= 0.995;
+          p.r += p.vr;
+          p.life--;
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate((p.r * Math.PI) / 180);
+          ctx.fillStyle = p.c;
+          if (p.heart) drawHeart(0, 0, p.s * 0.9);
+          else ctx.fillRect(-p.s / 2, -p.s / 2, p.s, p.s * 0.6);
+          ctx.restore();
+        });
+        parts = parts.filter((p) => p.life > 0 && p.y < canvas.height + 60);
+        if (parts.length) {
+          requestAnimationFrame(tick);
+        } else {
+          running = false;
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+      }
+
+      /* ---------- his letter (typed out) ---------- */
+      const LETTER = [
+        `Happy Birthday to the girl who somehow became my whole favourite place.`,
+        `I'm not great with big speeches, so I'll keep it simple: you make everything better just by being in it.`,
+        `Thank you for the laugh that fixes my worst days, for the patience you never announce, and for the way you care so much it honestly scares me (in the best way).`,
+        `I hope this year is gentle with you. I hope you get everything you're quietly wishing for.`,
+        `And whatever happens — you already have me. Every single day. 💙`,
+      ];
+      let opened = false;
+      function openEnvelope() {
+        if (opened) return;
+        opened = true;
+        const env = $("#envelope");
+        env.classList.add("opened");
+        burstConfetti(90);
+        setTimeout(() => {
+          const card = $("#letterCard");
+          card.classList.add("show");
+          typeIt();
+        }, 700);
+      }
+      function typeIt() {
+        const el = $("#typed");
+        el.textContent = "";
+        let i = 0,
+          c = 0,
+          p = 0;
+        (function step() {
+          if (p >= LETTER.length) {
+            el.classList.remove("typed");
+            return;
+          }
+          const txt = LETTER[p];
+          if (c < txt.length) {
+            el.textContent += txt[c++];
+            setTimeout(step, txt[c - 1] === " " ? 8 : 26);
+          } else {
+            el.textContent += "\n\n";
+            p++;
+            c = 0;
+            setTimeout(step, 320);
+          }
+        })();
+      }
+      $("#envelope").addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") openEnvelope();
+      });
+
+      /* ---------- reasons ---------- */
+      const REASONS = [
+        ["😊", "Your smile. Always. Without trying."],
+        ["🌙", "The way you talk to me at 2 AM."],
+        ["🧠", "How brilliant you are and never show off."],
+        ["🫂", "The hugs that fix everything."],
+        ["🍳", "Your terrible cooking. I love it anyway."],
+        ["🎵", "That one song we always dance to."],
+        ["😌", "How safe the world feels with you."],
+        ["🔥", "Your stubbornness. Especially then."],
+        ["👀", "The way you look at me when I am not watching."],
+        ["💛", "How kind you are to almost everyone."],
+        ["🌸", "Your morning face. My favourite."],
+        ["💞", "The fact that you are you. Just you."],
+      ];
+      $("#reasons").innerHTML = REASONS.map(
+        ([i, t], n) =>
+          `<div class="reason" style="transition-delay:${(n % 4) * 0.07}s"><div class="ico">${i}</div><div class="txt">${t}</div></div>`,
+      ).join("");
+
+      /* ---------- secret message ---------- */
+      const SECRETS = [
+        "You don't just make my life better — you make it beautiful. Happy Birthday, my favourite person. 💖",
+        "If I could give you one gift, it would be the ability to see yourself the way I see you.",
+        "Every version of you — the silly one, the tired one, the brilliant one — is my favourite person to know.",
+        "Thank you for existing. This world is genuinely softer because you're in it.",
+        "I love you. That's it. That's the whole message. Happy Birthday 💙",
+      ];
+      function openSecret() {
+        $("#secretText").textContent =
+          SECRETS[(Math.random() * SECRETS.length) | 0];
+        $("#overlay").classList.add("show");
+        burstConfetti(70);
+      }
+      function closeSecret() {
+        $("#overlay").classList.remove("show");
+      }
+      addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeSecret();
+      });
+
+      /* ---------- happy lines ---------- */
+      const LINES = [
+        "Your smile is genuinely one of the best things about my day. 😊",
+        "You handle hard days with so much grace — I notice, and I admire it.",
+        "You make everyone around you feel a little more at ease. That's rare.",
+        "I hope today reminds you how loved you truly are. 💕",
+        "You deserve every good thing coming your way this year.",
+        "The way you laugh at your own jokes? Iconic. Never stop.",
+        "You're someone's favourite person for very good reasons — mine included.",
+        "Somewhere in this world, someone is very happy that you were born. 🍰",
+      ];
+      function newLoveLine() {
+        const el = $("#loveLine");
+        el.style.opacity = 0;
+        setTimeout(() => {
+          el.textContent = LINES[(Math.random() * LINES.length) | 0];
+          el.style.opacity = 1;
+        }, 220);
+        burstConfetti(40);
+      }
+
+      /* ---------- music: a tiny birthday jingle, no files needed ---------- */
+      const NOTES = {
+        C4: 261.63,
+        D4: 293.66,
+        E4: 329.63,
+        F4: 349.23,
+        G4: 392,
+        A4: 440,
+        B4: 493.88,
+        C5: 523.25,
+        D5: 587.33,
+        E5: 659.25,
+        F5: 698.46,
+        G5: 783.99,
+      };
+      const MELODY = [
+        "G4 .5",
+        "G4 .25",
+        "A4 .5",
+        "G4 .5",
+        "C5 .5",
+        "B4 1",
+        "G4 .5",
+        "G4 .25",
+        "A4 .5",
+        "G4 .5",
+        "D5 .5",
+        "C5 1",
+        "G4 .5",
+        "G4 .25",
+        "G5 .5",
+        "E5 .5",
+        "C5 .5",
+        "B4 .5",
+        "A4 1",
+        "F5 .5",
+        "F5 .5",
+        "E5 .5",
+        "C5 .5",
+        "D5 .5",
+        "C5 1.4",
+      ].map((s) => {
+        const [n, d] = s.split(" ");
+        return [NOTES[n], parseFloat(d)];
+      });
+
+      let ac = null,
+        playing = false,
+        timer = null,
+        stepIdx = 0;
+      function ensureAudio() {
+        if (!ac) ac = new (window.AudioContext || window.webkitAudioContext)();
+        if (ac.state === "suspended") ac.resume();
+        return ac;
+      }
+      function playNote(freq, dur) {
+        const a = ensureAudio();
+        const t0 = a.currentTime + 0.02;
+        const osc = a.createOscillator();
+        const g = a.createGain();
+        osc.type = "triangle";
+        osc.frequency.value = freq;
+        g.gain.setValueAtTime(0, t0);
+        g.gain.linearRampToValueAtTime(0.28, t0 + 0.04);
+        g.gain.exponentialRampToValueAtTime(0.001, t0 + dur);
+        osc.connect(g).connect(a.destination);
+        osc.start(t0);
+        osc.stop(t0 + dur + 0.05);
+      }
+      function advance() {
+        if (!playing) return;
+        const [f, d] = MELODY[stepIdx % MELODY.length];
+        playNote(f, d * 0.95);
+        stepIdx++;
+        timer = setTimeout(advance, d * 1000);
+      }
+      function toggleMusic() {
+        const btn = $("#musicBtn");
+        if (playing) {
+          playing = false;
+          clearTimeout(timer);
+          btn.classList.remove("on");
+          btn.textContent = "🎵 Play our song";
+        } else {
+          playing = true;
+          stepIdx = 0;
+          advance();
+          btn.classList.add("on");
+          btn.textContent = "⏸ Pause";
+        }
+      }
+
+      /* ---------- the ticker in the hero ---------- */
+      const TICKER = [
+        "🎂 Making a wish…",
+        "🥳 She said YES to another year with me!",
+        "🎈 Balloons: checked. Cake: secured.",
+        "💗 I would choose you in every lifetime.",
+        "🎁 His gift is standing right beside her 👉",
+      ];
+      setInterval(() => {
+        $("#ticker").textContent = TICKER[(Math.random() * TICKER.length) | 0];
+      }, 3800);
+
+      /* ---------- grand opening ---------- */
+      addEventListener("load", () => {
+        setTimeout(() => burstConfetti(150), 500);
+        setTimeout(() => burstConfetti(120), 1700);
+      });
+    </script>
+  </body>
+</html>
